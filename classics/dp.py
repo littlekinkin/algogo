@@ -4,6 +4,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
+import time
 
 
 #coin
@@ -90,6 +91,23 @@ def lcs(s1, s2):
         return max([lcs(s1, s2[:-1]), lcs(s1[:-1], s2)])
 
 
+def comp_fib():
+    count = 20
+    a = {}
+    start = time.time()
+    for i in range(100):
+        fib(count)
+    print 'recursive take:', time.time() - start
+    start = time.time()
+    for i in range(count):
+        fib_top2down(count, a)
+    print 'topdown take:', time.time() - start
+    start = time.time()
+    for i in range(100):
+        fib_b2u(count)
+    print 'recursive take:', time.time() - start
+
+
 
 
 if __name__ == '__main__':
@@ -101,4 +119,5 @@ if __name__ == '__main__':
     print fib_b2u(k)
     print lis([10, 22, 9, 33, 21, 50, 41, 60])
     print lcs('1234', '1423')
+    comp_fib()
 
