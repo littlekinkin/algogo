@@ -38,6 +38,12 @@ def cc2(total, coins):
     print(rr)
     return len(rr)
 
+def cc3(total, coins):
+    dp = [int(not i) for i in range(total + 1)]
+    for c in coins:
+        for j in range(c, total + 1):
+            dp[j] += dp[j - c]
+    print(dp[-1])
 
 
 
@@ -48,3 +54,4 @@ for i in range(case_num):
     total = int(sys.stdin.readline().strip())
     print(cc2(total, coins))
     print(cc(total, coins))
+    print(cc3(total, coins))
