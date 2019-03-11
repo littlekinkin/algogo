@@ -45,6 +45,16 @@ def post_traverse(root):
     print(root.value)
 
 
+
+'''
+        D
+      |   |  
+    B       E
+  |   |
+A       C       G
+            F
+'''
+
 if __name__ == '__main__':
     root = Node('D',Node('B',Node('A'),Node('C')),Node('E',right=Node('G',Node('F'))))
     pre_traverse(root)
