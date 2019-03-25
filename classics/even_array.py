@@ -3,7 +3,6 @@
 
 #left even
 #right odd
-
 def is_odd(num):
     return num%2
 
@@ -22,6 +21,8 @@ def even1(arr):
     return arr
 
 def even2(arr):
+    print('-'*10)
+    print(arr)
     even_index = 0
     for index, num in enumerate(arr):
         if not is_odd(num):
@@ -33,6 +34,6 @@ def even2(arr):
 
 
 for x in [[1,2,3,4,5], [1,3,3,4,6], [1,3,3,5,7], [2,4,6,8], [2,4,3,6,8]]:
-    print(even1(x))
+    #print(even1(x))
     print(even2(x))
 
