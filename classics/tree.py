@@ -3,6 +3,9 @@
 
 from queue import Queue
 
+#breadth-first: queue
+#depth-first: stack, recursive
+
 class Node():
     def __init__(self, value=None, left=None, right=None):
         self.value = value
@@ -44,6 +47,16 @@ def post_traverse(root):
     post_traverse(root.right)
     print(root.value)
 
+def layer_traverse(root):
+    q = Queue()
+    q.put(root)
+    while not q.empty():
+        now = q.get()
+        print(now.value)
+        if now.left:
+            q.put(now.left)
+        if now.right:
+            q.put(now.right)
 
 
 '''
@@ -64,5 +77,7 @@ if __name__ == '__main__':
     post_traverse(root)
     print('--')
     pre_traverse4stack(root)
+    print('--')
+    layer_traverse(root)
 
 
