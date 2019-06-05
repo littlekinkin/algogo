@@ -11,6 +11,7 @@ class Node():
         self.value = value
         self.left = left
         self.right = right
+        self.layer = None
 
 def pre_traverse(root):
     if not root:
@@ -58,6 +59,30 @@ def layer_traverse(root):
         if now.right:
             q.put(now.right)
 
+def right_node(root):
+    q = Queue()
+    q.put(root)
+    root.layer = 1
+    result = []
+    while not q.empty():
+        now = q.get()
+        result.append((now.value, now.layer))
+        if now.left:
+            now.left.layer = now.layer + 1
+            q.put(now.left)
+        if now.right:
+            now.right.layer = now.layer + 1
+            q.put(now.right)
+    print(result)
+    for index, x in enumerate(result):
+        if index == 0 or index == len(result) -1:
+            print(x[0])
+        if index > 0 and index < len(result)-1 and x[1] != result[index+1][1]:
+            print(x[0])
+
+
+    
+
 
 '''
         D
@@ -79,5 +104,7 @@ if __name__ == '__main__':
     pre_traverse4stack(root)
     print('--')
     layer_traverse(root)
+    print('--')
+    right_node(root)
 
 

@@ -27,9 +27,34 @@ def log_sum_exp(vec):
     return max_score +\
         torch.log(torch.sum(torch.exp(vec - max_score_broadcast)))
 
-class BC(nn.module):
+class BiLSTM_CRF(nn.Module):
 
     def __init__(self, vocab_size, tag_to_ix, embedding_dim, hidden_dim):
-        pass
+        super(BiLSTM_CRF, self).__init__()
+        self.embedding_dim = embedding_dim
+        self.hidden_dim = hidden_dim
+        self.vocab_size = vocab_size
+        self.tag_to_ix = tag_to_ix
+        self.tagset_size = len(tag_to_ix)
+
+        self.word_embeds = nn.Embedding(vocab_size, embedding_dim)
+        self.lstm = nn.LSTM(embedding_dim, hidden_dim//2, num_layers=1, bidirectional=True)
+        
+        self.hidden2tag = nn.linear(hidden_dim, self.tagset_size)
+
+        self.transitions = nn.Parameter(torch.randn(self.tagset_size, self.tagset_size))
+
+        self.transitions[tag_to_ix[START_TAG], :] = -10000
+        self.transitions[:, tag_to_ix[STOP_TAG]] = -10000
+
+        self.hidden = self.init_hidden()
+
+    def init_hidden(self):
+        return (torch.randn(2, 1, self.hidden_dim // 2),
+                torch.randn(2, 1, self.hidden_dim // 2))
+
+    def _forward_alg(self, feats):
+        
+
 
 

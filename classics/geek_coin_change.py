@@ -43,7 +43,8 @@ def cc3(total, coins):
     for c in coins:
         for j in range(c, total + 1):
             dp[j] += dp[j - c]
-    print(dp[-1])
+    #print(dp[-1])
+    return dp[-1]
 
 
 
