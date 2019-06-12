@@ -103,9 +103,9 @@ def comp_fib():
         fib_top2down(count, a)
     print 'topdown take:', time.time() - start
     start = time.time()
-    for i in range(100):
+    for i in range(count):
         fib_b2u(count)
-    print 'recursive take:', time.time() - start
+    print 'b2u take:', time.time() - start
 
 
 

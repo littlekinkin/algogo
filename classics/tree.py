@@ -80,6 +80,23 @@ def right_node(root):
         if index > 0 and index < len(result)-1 and x[1] != result[index+1][1]:
             print(x[0])
 
+def tree_depth(root):
+    if not root:
+        return 0
+    return max(tree_depth(root.left), tree_depth(root.right)) + 1
+
+#longest path
+ans = 1
+def get_depth(root):
+    if not root:
+        return 0
+    l = get_depth(root.left)
+    r = get_depth(root.right)
+    global ans
+    ans = max(ans, l+r+1)
+    return max(l, r) + 1
+
+
 
     
 
@@ -106,5 +123,10 @@ if __name__ == '__main__':
     layer_traverse(root)
     print('--')
     right_node(root)
+    print('--')
+    print(tree_depth(root))
+    print('--')
+    get_depth(root)
+    print(ans-1)
 
 
